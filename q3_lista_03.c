@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+#include <ctype.h> // biblioteca para manipulacao de caracteres
 
 //PROBLEMAS NO ELSE IF  DO SABADO E DOMINGO"NAO HA PROIBIÇÃO NO FIM DE SEMANA"
 
