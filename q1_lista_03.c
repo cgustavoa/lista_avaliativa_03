@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+// FAZER A FUNÇÃO PRINTAR A FRASE COM OS NUMEROS ROMANOS
+// VERIFICAR IMPRESSÃO DO DECIMAL
 int valorDecimal(char c){
     switch (c) {
         case 'I': return 1;
@@ -21,12 +23,12 @@ int romanoParaDecimal(char romano[]){       // funcao para converter um número 
     for(i = 0; i < strlen(romano); i++){
         int valor1 = valorDecimal(romano[i]);
 
-        if (i + 1 < strlen(romano)) {
+        if (i + 1 < strlen(romano)){
             int valor2 = valorDecimal(romano[i + 1]);
 
-            if (valor1 >= valor2) {
+            if (valor1 >= valor2){
                 resultado = resultado + valor1;
-            } else {
+            } else{
                 resultado = resultado + valor2 - valor1;
                 i++;
             }
@@ -48,33 +50,30 @@ void decimalParaBinario(int numeroDecimal){
 }
 
 void decimalParaHexadecimal(int numeroDecimal){
-    char digitosHexadecimais[] = "0123456789ABCDEF";
+    char digitosHexadecimais[] = "0123456789abcdef";
 
     if(numeroDecimal == 0){
         return;
     }
 
     decimalParaHexadecimal(numeroDecimal / 16);
-    printf("%c", digitosHexadecimais[numeroDecimal % 16]);
+    printf("%C", digitosHexadecimais[numeroDecimal % 16]);
 }
 
 int main(){
     char numeroRomano[13];
     int numeroDecimal, numeroBinario;
 
-    printf("Digite um número romano (até 12 caracteres): ");
+
     scanf("%s", numeroRomano);
 
     numeroDecimal = romanoParaDecimal(numeroRomano);
-    numeroBinario = decimalParaBinario;
-
-    printf("Representação Decimal: %d\n", numeroDecimal);
-
-    printf("Representação Binária: ");
     decimalParaBinario(numeroDecimal);
     printf("\n");
 
-    printf("Representação Hexadecimal: ");
+    decimalParaBinario(numeroDecimal);
+    printf("\n");
+
     decimalParaHexadecimal(numeroDecimal);
     printf("\n");
 
