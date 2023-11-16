@@ -60,13 +60,14 @@ int main(){
         
        
     if (verificaRodizio(placa, dia_semana)) {
-        printf("O veículo(COLOCAR PARA IMPRIMIR A PLACA) pode circular neste dia(COLOCAR PARA IMPRIMIR O DIA).\n");
-    } else {
-        printf("O veículo(COLOCAR PARA IMPRIMIR A PLACA) não pode circular neste dia(COLOCAR PARA IMPRIMIR O DIA).\n");
-    }/*else if(verificaRodizio(placa, dia_semana) == "SABADO", "DOMIGO"){
-        printf("Nao ha proibicao no fim de semana.\n");*/
+        printf("O veículo %c pode circular neste dia %c.\n");
+    } else if (verificaRodizio(placa, dia_semana)){
+        printf("O veículo %c não pode circular neste dia %c.\n");
+    }else if(verificaRodizio(placa, dia_semana) == "SABADO", "DOMIGO"){
+        printf("Nao ha proibicao no fim de semana.\n");
     } else{
         printf("Placa invalida.\n");
-    }   
-return 0;
+    }
+    }
+    return 0;
 }
