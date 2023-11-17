@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-// ALGUM ERRO MIRABOLANTE (W?) E ESPAÇO NO PRINTF DA MAIN
 int valorDecimal(char c){
     switch (c) {
         case 'I': return 1;
@@ -30,24 +29,46 @@ int romanoParaDecimal(char *romano){
 }
 
 
-void decimalParaBinario(int numeroDecimal){
-    if(numeroDecimal == 0){
-        return;
+void decimalParaBinario(int numeroDecimal, char binario[]){
+    binario[0] = '\0';
+
+   while (numeroDecimal > 0) {
+        char digito[2];
+        sprintf(digito, "%d", numeroDecimal % 2);
+        strcat(binario, digito);
+        numeroDecimal = numeroDecimal / 2;
     }
 
-    decimalParaBinario(numeroDecimal / 2);
-
+    int tamanho= strlen(binario);
+    for (int i = 0; i < tamanho / 2; i++) {
+        char temp = binario[i];
+        binario[i] = binario[tamanho - 1 - i];
+        binario[tamanho - 1 - i] = temp;
+    }
 }
 
-void decimalParaHexadecimal(int numeroDecimal){
-    char digitosHexadecimais[] = "0123456789abcdef";
+void decimalParaHexadecimal(int numeroDecimal, char digitosHexadecimais[]){
+   int i = 0, resto;
+   digitosHexadecimais[0] = '\0';
 
-    if(numeroDecimal == 0){
-        return;
+    while (numeroDecimal > 0) {
+        resto = numeroDecimal % 16;
+        char dig[2];
+        if (resto < 10) {
+            sprintf(dig,"%d",resto);
+        } else {
+             sprintf(dig, "%c", resto - 10 + 'a');
+        }
+        strcat(digitosHexadecimais, dig);
+        numeroDecimal = numeroDecimal / 16;
+        i++;
     }
-
-    decimalParaHexadecimal(numeroDecimal / 16);
-
+    int comprimento = strlen(digitosHexadecimais);
+    for (int i = 0; i < comprimento / 2; i++) {
+        char temp = digitosHexadecimais[i];
+        digitosHexadecimais[i] = digitosHexadecimais[comprimento - 1 - i];
+        digitosHexadecimais[comprimento - 1 - i] = temp;
+    }
 }
 
 int main(){
@@ -59,13 +80,14 @@ int main(){
 
     numeroDecimal = romanoParaDecimal(numeroRomano);
 
-    decimalParaBinario(numeroDecimal);
+    decimalParaBinario(numeroDecimal, binario);
 
-    decimalParaHexadecimal(numeroDecimal);
+    decimalParaHexadecimal(numeroDecimal, hexadecimal);
 
     printf("%s na base 2: %s\n",numeroRomano, binario);
     printf("%s na base 10: %d\n",numeroRomano, numeroDecimal);
     printf("%s na base 16: %s\n",numeroRomano, hexadecimal);
     return 0;
 }
+
 
